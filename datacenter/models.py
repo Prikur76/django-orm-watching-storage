@@ -36,15 +36,13 @@ class Visit(models.Model):
         duration = localtime() - entered
         if self.leaved_at:
             duration = localtime(self.leaved_at) - entered
-        return duration
+        return duration.total_seconds()
 
     def format_duration(self):
         """Форматирует duration в строковое выражение"""
-        duration = self.get_duration()
-        total_seconds = duration.total_seconds()
+        total_seconds = self.get_duration()
         hours = int(total_seconds // 3600)
         minutes = int((total_seconds % 3600) // 60)
-        seconds = int(total_seconds % 60)
         format_duration = f"{hours} час. {minutes} мин."
         return format_duration
 
@@ -53,6 +51,6 @@ class Visit(models.Model):
         Возвращает результат сранвения продолжительности пребывания
         с ограничением minutes
         """
-        duration = self.get_duration()
-        duration_minutes = int(duration.total_seconds() // 60)
+        total_seconds = self.get_duration()
+        duration_minutes = int(total_seconds // 60)
         return duration_minutes > minutes

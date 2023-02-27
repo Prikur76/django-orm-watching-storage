@@ -41,10 +41,10 @@ class Visit(models.Model):
     def format_duration(self):
         """Форматирует duration в строковое выражение"""
         duration = self.get_duration()
-        days, seconds = duration.days, duration.total_seconds()
-        hours = int(days * 24 + seconds // 3600)
-        minutes = int((seconds % 3600) // 60)
-        seconds = int((seconds % 60))
+        total_seconds = duration.total_seconds()
+        hours = int(total_seconds // 3600)
+        minutes = int((total_seconds % 3600) // 60)
+        seconds = int(total_seconds % 60)
         format_duration = f"{hours} час. {minutes} мин."
         return format_duration
 

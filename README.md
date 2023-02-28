@@ -32,7 +32,7 @@
 - `DEBUG` — дебаг-режим. Поставьте `True`, чтобы увидеть отладочную информацию в случае ошибки. Выключается значением `False`.
 - `SECRET_KEY` — секретный ключ проекта. Например: `erofheronoirenfoernfx49389f43xf3984xf9384`.
 - `ALLOWED_HOSTS` — см [документацию Django](https://docs.djangoproject.com/en/3.1/ref/settings/#allowed-hosts).
-- `DATABASE_URL` -  url адрес для подключения к БД. 
+- `DATABASE_URL` -  url адрес для подключения к БД в формате `postgres://USER:PASSWORD@HOST:PORT/NAME` 
 
 ### Цель проекта
 

@@ -1,31 +1,22 @@
 import os
-from environs import Env
 
+import dj_database_url
+from environs import Env
 
 env = Env()
 env.read_env()
 
-DATABASES = {
-    'default': {
-        'ENGINE': env('ENGINE'),
-        'HOST': env('HOST'),
-        'PORT': env.int('PORT'),
-        'NAME': env('NAME'),
-        'USER': env('USER'),
-        'PASSWORD': env('PASSWORD'),
-    }
-}
+DATABASES['default'] = dj_database_url.config()
 
 INSTALLED_APPS = ['datacenter']
 
-SECRET_KEY = os.environ.get('SECRET_KEY')
+ALLOWED_HOSTS = env.list("ALLOWED_HOSTS", [])
 
-DEBUG = env.bool('DEBUG')
+SECRET_KEY = env.str("SECRET_KEY", "REPLACE_ME")
+
+DEBUG = env.bool("DEBUG", True)
 
 ROOT_URLCONF = 'project.urls'
-
-ALLOWED_HOSTS = ['*']
-
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TEMPLATES = [
@@ -35,7 +26,6 @@ TEMPLATES = [
         'APP_DIRS': True,
     },
 ]
-
 
 USE_L10N = True
 
